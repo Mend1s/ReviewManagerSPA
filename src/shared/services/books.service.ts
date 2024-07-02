@@ -14,4 +14,8 @@ export class BooksService {
   getAll() {
     return this.httpClient.get<Book[]>(`${this.baseUrl}/Books`);
   }
+
+  getPhotoById(id: number) {
+    return this.httpClient.get(`${this.baseUrl}/Books/download/${id}`, { responseType: 'blob' });
+  }
 }

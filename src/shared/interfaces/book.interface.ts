@@ -9,6 +9,6 @@ export interface Book {
   yearOfPublication: number;
   numberOfPages: number;
   createDate: string;
-  imageUrl: string;
+  imageUrl?: string;
   averageGrade: number;
 }
