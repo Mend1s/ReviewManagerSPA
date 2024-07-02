@@ -1,0 +1,69 @@
+<form [formGroup]="bookForm">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Título</mat-label>
+    <input matInput placeholder="Título do Livro" formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Descrição</mat-label>
+    <textarea placeholder="Descrição do Livro" matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>ISBN</mat-label>
+    <input matInput placeholder="ISBN do Livro" formControlName="isbn">
+    <div *ngIf="bookForm.controls['isbn'].invalid && bookForm.controls['isbn'].touched">
+      <small *ngIf="bookForm.controls['isbn'].hasError('required')">ISBN é obrigatório.</small>
+      <small *ngIf="bookForm.controls['isbn'].hasError('pattern')">ISBN inválido.</small>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Autor</mat-label>
+    <input matInput placeholder="Autor do Livro" formControlName="author">
+    <div *ngIf="bookForm.controls['author'].invalid && bookForm.controls['author'].touched">
+      <small *ngIf="bookForm.controls['author'].hasError('required')">Autor é obrigatório.</small>
+      <small *ngIf="bookForm.controls['author'].hasError('minlength')">Mínimo de 3 caracteres.</small>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Editora</mat-label>
+    <input matInput placeholder="Editora do Livro" formControlName="publisher">
+    <div *ngIf="bookForm.controls['publisher'].invalid && bookForm.controls['publisher'].touched">
+      <small *ngIf="bookForm.controls['publisher'].hasError('required')">Editora é obrigatória.</small>
+      <small *ngIf="bookForm.controls['publisher'].hasError('minlength')">Mínimo de 3 caracteres.</small>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Gênero</mat-label>
+    <input matInput placeholder="Gênero do Livro" type="number" formControlName="genre">
+    <div *ngIf="bookForm.controls['genre'].invalid && bookForm.controls['genre'].touched">
+      <small *ngIf="bookForm.controls['genre'].hasError('required')">Gênero é obrigatório.</small>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ano de Publicação</mat-label>
+    <input matInput type="number" placeholder="Ano de Publicação do Livro" formControlName="yearOfPublication">
+    <div *ngIf="bookForm.controls['yearOfPublication'].invalid && bookForm.controls['yearOfPublication'].touched">
+      <small *ngIf="bookForm.controls['yearOfPublication'].hasError('required')">Ano de publicação é
+        obrigatório.</small>
+      <small *ngIf="bookForm.controls['yearOfPublication'].hasError('min')">Ano inválido.</small>
+      <small *ngIf="bookForm.controls['yearOfPublication'].hasError('max')">Ano inválido.</small>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Número de Páginas</mat-label>
+    <input matInput type="number" placeholder="Número de páginas" formControlName="numberOfPages">
+    <div *ngIf="bookForm.controls['numberOfPages'].invalid && bookForm.controls['numberOfPages'].touched">
+      <small *ngIf="bookForm.controls['numberOfPages'].hasError('required')">Número de páginas é obrigatório.</small>
+      <small *ngIf="bookForm.controls['numberOfPages'].hasError('min')">Número de páginas deve ser maior que 0.</small>
+    </div>
+  </mat-form-field>
+
+  <button type="submit" (click)="onSubmit()" [disabled]="bookForm.invalid">Salvar</button>
+</form>

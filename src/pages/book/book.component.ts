@@ -5,15 +5,22 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CardComponent } from './card/card.component';
 import { RouterLink } from '@angular/router';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CardComponent, RouterLink],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    CardComponent,
+    RouterLink,
+    CreateBookComponent],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss'
 })
 export class BookComponent {
+
   books: Book[] = [];
   booksService = inject(BooksService);
 
@@ -21,7 +28,6 @@ export class BookComponent {
     this.getAllBooks();
     // this.getPhotoById(1);
   }
-
 
   getPhotoById(id: number) {
     this.booksService.getPhotoById(id).subscribe((photo) => {
