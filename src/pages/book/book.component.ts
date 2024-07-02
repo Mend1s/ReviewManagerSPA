@@ -1,12 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { BooksService } from '../../shared/services/books.service';
 import { Book } from '../../shared/interfaces/book.interface';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { CardComponent } from './card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, MatButtonModule, CardComponent, RouterLink],
   templateUrl: './book.component.html',
   styleUrl: './book.component.scss'
 })
