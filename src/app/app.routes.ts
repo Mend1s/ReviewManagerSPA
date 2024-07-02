@@ -19,6 +19,6 @@ export const routes: Routes = [
   },
   {
     path: 'new-book',
-    component: DialogBookComponent
+    loadComponent: () => import('../pages/book/dialog-book/dialog-book.component').then((m) => m.DialogBookComponent)
   }
 ];
