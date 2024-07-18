@@ -14,6 +14,8 @@ export class CardComponent {
 
   book = input.required<Book>()
 
+  bookTitle = computed(() => this.book().title);
+  bookImageUrl = computed(() => this.book().imageUrl);
   bookDescription = computed(() => this.book().description);
 
 }

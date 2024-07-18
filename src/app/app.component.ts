@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { SideNavComponent } from '../shared/sidenav/sidenav.component';
 import { ToolbarComponent } from '../shared/toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
+import { ContainerComponent } from '../shared/container/container.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
     SideNavComponent,
     ToolbarComponent,
     CommonModule,
-    MatToolbarModule],
+    MatToolbarModule,
+    ContainerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

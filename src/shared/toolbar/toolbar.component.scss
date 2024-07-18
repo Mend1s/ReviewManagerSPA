@@ -1,8 +1,18 @@
 mat-toolbar {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(42, 129, 200);
 }
 
-.title {
-  text-align: center;
-  margin: 0;
+.container {
+  max-width: 1048px;
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
 }
