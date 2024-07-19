@@ -1,5 +1,25 @@
-<mat-card class="card" appearance="outlined" routerLink="/detail-book/{{idBook()}}">
-  <img mat-card-image [src]="bookImageUrl()">
+<div class="menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon class="icon-menu">more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="editBook(book())">
+      <mat-icon>edit</mat-icon>
+      <span>Editar</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>star</mat-icon>
+      <span>Avaliar</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Deletar</span>
+    </button>
+  </mat-menu>
+</div>
+
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image [src]="bookImageUrl()" routerLink="/detail-book/{{idBook()}}">
   <mat-card-content>
     <p>{{ bookTitle() }} </p>
   </mat-card-content>

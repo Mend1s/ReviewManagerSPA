@@ -25,6 +25,17 @@
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+  position: relative;
+  top: 46px;
+  z-index: 1;
+  left: 205px;
+}
+
+.icon-menu{
+  color: white;
 }

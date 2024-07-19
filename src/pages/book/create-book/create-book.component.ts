@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterModule } from '@angular/router';
-import { Book } from '../../../shared/interfaces/book.interface';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BooksService } from '../../../shared/services/books.service';
+import { Book } from '../../../shared/interfaces/book.interface';
 
 
 @Component({
@@ -24,22 +24,28 @@ import { BooksService } from '../../../shared/services/books.service';
   styleUrl: './create-book.component.scss'
 })
 export class CreateBookComponent {
+
+  id!: string;
+  book!: Book;
   bookForm!: FormGroup;
   checkedBook!: boolean;
   selectedFile!: File;
+  rota!: string;
 
-  private fb = inject(FormBuilder);
-  private bookService = inject(BooksService);
+  private _fb = inject(FormBuilder);
+  private _bookService = inject(BooksService);
+  private _activatedRoute = inject(ActivatedRoute);
 
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.newFormBook();
+    this.asEditorCreate();
   }
 
   newFormBook() {
-    this.bookForm = this.fb.group({
+    this.bookForm = this._fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       isbn: ['', [Validators.required, Validators.pattern(/^(97(8|9))?\d{9}(\d|X)$/)]],
@@ -51,6 +57,35 @@ export class CreateBookComponent {
       imageUrl: [null, Validators.required],
       // averageGrade: [{ value: 0, disabled: true }, [Validators.required, Validators.min(0), Validators.max(5)]]
     });
+  }
+
+  asEditorCreate() {
+    this.rota = this._activatedRoute.snapshot.url[0].path;
+
+    if (this.rota === 'edit-book') {
+      this.getIdByRoute();
+      this.getBookById();
+    } else { }
+  }
+
+  getBookById() {
+    this._bookService.getBookById(this.id).subscribe(book => {
+      this.book = book;
+      this.bookForm.controls['title'].setValue(this.book.title);
+      this.bookForm.controls['description'].setValue(this.book.description);
+      this.bookForm.controls['isbn'].setValue(this.book.isbn);
+      this.bookForm.controls['author'].setValue(this.book.author);
+      this.bookForm.controls['publisher'].setValue(this.book.publisher);
+      this.bookForm.controls['genre'].setValue(this.book.genre);
+      this.bookForm.controls['yearOfPublication'].setValue(this.book.yearOfPublication);
+      this.bookForm.controls['numberOfPages'].setValue(this.book.numberOfPages);
+      this.bookForm.controls['imageUrl'].setValue(this.book);
+      this.checkedBook = true;
+    })
+  }
+
+  getIdByRoute() {
+    this.id = this._activatedRoute.snapshot.url[1].path;
   }
 
   onFileSelected(event: any): void {
@@ -80,7 +115,7 @@ export class CreateBookComponent {
   }
 
   createdBook(formData: FormData) {
-    this.bookService.postBook(formData).subscribe(response => {
+    this._bookService.postBook(formData).subscribe(response => {
       this.router.navigate(['/book']);
     })
   }

@@ -1,4 +1,8 @@
-<h5>Cadastrar livro</h5>
+@if (!checkedBook) {
+  <h5>Cadastrar livro</h5>
+} @else {
+  <h5>Editar livro</h5>
+}
 
 <form [formGroup]="bookForm" class="form-container">
 
@@ -74,7 +78,11 @@
 </form>
 
 <div class="fx-b">
-  <button mat-stroked-button type="submit" (click)="onSubmit()" [disabled]="bookForm.invalid">Salvar</button>
+  @if (!checkedBook) {
+    <button mat-stroked-button type="submit" (click)="onSubmit()" [disabled]="bookForm.invalid">Salvar</button>
+  } @else {
+    <button mat-stroked-button type="submit" (click)="onSubmit()" [disabled]="bookForm.invalid">Editar</button>
+  }
   <button mat-flat-button (click)="goToBook()">Cancelar</button>
 </div>
 
