@@ -18,4 +18,12 @@ export class BooksService {
   getPhotoById(id: number) {
     return this.httpClient.get(`${this.baseUrl}/Books/download/${id}`, { responseType: 'blob' });
   }
+
+  postBook(formData: FormData) {
+    return this.httpClient.post(`${this.baseUrl}/Books`, formData);
+  }
+
+  putBook(formData: FormData) {
+    // return this.httpClient.put(`${this.baseUrl}/Books/${book.id}`, book);
+  }
 }

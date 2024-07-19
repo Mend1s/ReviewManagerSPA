@@ -1,4 +1,36 @@
-:host {
-  margin-top: 100px;
+h5 {
+  font-family: Poppins, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
 }
 
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+}
+
+.cover {
+  grid-row: span 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid rgb(42, 129, 200);
+  height: 379px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title, .description {
+  grid-column: span 3; /* Título ocupa duas colunas */
+}
+
+.fx-b {
+  display: flex;
+  column-gap: 10px;
+}

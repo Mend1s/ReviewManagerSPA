@@ -5,6 +5,7 @@ import { SideNavComponent } from '../shared/sidenav/sidenav.component';
 import { ToolbarComponent } from '../shared/toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 import { ContainerComponent } from '../shared/container/container.component';
+import { ProgressBarComponent } from '../shared/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { ContainerComponent } from '../shared/container/container.component';
     ToolbarComponent,
     CommonModule,
     MatToolbarModule,
-    ContainerComponent],
+    ContainerComponent,
+    ProgressBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -7,3 +7,11 @@
   <app-card [book]="book"></app-card>
   }
 </div>
+
+@if (showError) {
+<div>
+  <div class="test">
+  </div>
+  <p class="error-message">Opsss, houve um erro, tente novamente.</p>
+</div>
+}

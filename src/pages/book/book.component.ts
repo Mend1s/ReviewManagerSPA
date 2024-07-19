@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CardComponent } from './card/card.component';
 import { RouterLink } from '@angular/router';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { ProgressService } from '../../shared/services/progress.service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -23,6 +25,8 @@ export class BookComponent {
 
   books: Book[] = [];
   booksService = inject(BooksService);
+  progressService = inject(ProgressService);
+  showError: boolean = false;
 
   ngOnInit() {
     this.getAllBooks();
@@ -41,8 +45,14 @@ export class BookComponent {
   }
 
   getAllBooks() {
-    this.booksService.getAll().subscribe((books) => {
+    this.progressService.show();
+    this.booksService.getAll().pipe(catchError(error => {
+      this.showError = true;
+      return of([]);
+    })
+    ).subscribe((books) => {
       this.books = books;
+      this.progressService.hide();
     });
   }
 }

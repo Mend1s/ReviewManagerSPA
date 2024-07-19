@@ -1,5 +1,5 @@
 export interface Book {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   isbn: string;
@@ -8,7 +8,6 @@ export interface Book {
   genre: number;
   yearOfPublication: number;
   numberOfPages: number;
-  createDate: string;
   imageUrl?: string;
-  averageGrade: number;
+  // averageGrade?: number;
 }
