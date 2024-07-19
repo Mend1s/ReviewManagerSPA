@@ -1,15 +1,6 @@
-<mat-card class="card" appearance="outlined">
-  <!-- <mat-card-header>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header> -->
-  <img mat-card-image [src]="bookImageUrl()" alt="{{ bookTitle() }}">
+<mat-card class="card" appearance="outlined" routerLink="/detail-book/{{idBook()}}">
+  <img mat-card-image [src]="bookImageUrl()">
   <mat-card-content>
-    <p>{{ bookDescription() }} </p>
+    <p>{{ bookTitle() }} </p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button routerLink="/detail-book/{{idBook()}}">Detalhes</button>
-    {{ idBook()}}
-  </mat-card-actions>
 </mat-card>

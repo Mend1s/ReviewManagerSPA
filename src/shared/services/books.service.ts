@@ -19,6 +19,10 @@ export class BooksService {
     return this.httpClient.get(`${this.baseUrl}/Books/download/${id}`, { responseType: 'blob' });
   }
 
+  getBookById(id: string) {
+    return this.httpClient.get<Book>(`${this.baseUrl}/Books/${id}`);
+  }
+
   postBook(formData: FormData) {
     return this.httpClient.post(`${this.baseUrl}/Books`, formData);
   }

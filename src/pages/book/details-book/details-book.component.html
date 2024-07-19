@@ -1,1 +1,67 @@
-<p>details-book works!</p>
+<h5>Detalhe do livro</h5>
+
+<div class="form-container">
+  <div appearance="outline" class="form-group title">
+    <p class="w-mg">Título</p>
+    <p>{{ book.title }}</p>
+  </div>
+
+  <div class="cover">
+    <img [src]="book.imageUrl">
+  </div>
+
+  <div appearance="outline" class="form-group description">
+    <p class="w-mg">Descrição</p>
+    <p>{{ book.description }}</p>
+  </div>
+
+  <div appearance="outline" class="form-group isbn">
+    <p class="w-mg">ISBN</p>
+    <p>{{ book.isbn }}</p>
+  </div>
+
+  <div appearance="outline" class="form-group author">
+    <p class="w-mg">Autor</p>
+    <p>{{ book.author }}</p>
+  </div>
+
+  <div appearance="outline" class="form-group publisher">
+    <p class="w-mg">Editora</p>
+    <p>{{ book.publisher }}</p>
+  </div>
+
+  <div appearance="outline" class="form-group genre">
+    <p class="w-mg">Gênero</p>
+    <p>{{ book.genre }}</p>
+  </div>
+
+  <div appearance="outline" class="form-group year">
+    <p class="w-mg">Ano de Publicação</p>
+    <p>{{ book.yearOfPublication }}</p>
+  </div>
+
+  <div>
+    <p class="w-mg">Número de Páginas</p>
+    <p>{{ book.numberOfPages }}</p>
+  </div>
+
+</div>
+
+<mat-divider style="margin: 40px" />
+
+<h5>Opiniões em destaque</h5>
+
+@for (review of reviews ; track review.id){
+<mat-list>
+  <mat-list-item lines="3">
+    <img matListItemAvatar class="header-image">
+    <span matListItemTitle>Nota: {{ review.note }}</span>
+    <span matListItemLine> {{ review.description }}</span>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+}
+@empty {
+  <div class="no-review"></div>
+  <p style="text-align: center; margin-top: 10px;">Nenhuma avaliação cadastrada :(</p>
+}
