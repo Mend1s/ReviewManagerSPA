@@ -2,11 +2,11 @@
 .flex-card {
   display: flex;
   gap: 0px 10px;
-  margin-top: 20px;
   flex-wrap: wrap;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding-top: 10px;
+  // overflow-x: hidden;
+  // overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-flx{

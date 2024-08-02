@@ -27,7 +27,11 @@ export class BooksService {
     return this.httpClient.post(`${this.baseUrl}/Books`, formData);
   }
 
-  putBook(formData: FormData) {
-    // return this.httpClient.put(`${this.baseUrl}/Books/${book.id}`, book);
+  putBook(id: number, formData: FormData) {
+    return this.httpClient.put(`${this.baseUrl}/Books/${id}`, formData);
+  }
+
+  deleteBook(id: number) {
+    return this.httpClient.delete(`${this.baseUrl}/Books/${id}`);
   }
 }

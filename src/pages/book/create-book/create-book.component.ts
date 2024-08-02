@@ -1,3 +1,4 @@
+import { Book } from './../../../shared/interfaces/book.interface';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BooksService } from '../../../shared/services/books.service';
-import { Book } from '../../../shared/interfaces/book.interface';
+import { ReportsService } from '../../../shared/services/reports.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class CreateBookComponent {
   private _fb = inject(FormBuilder);
   private _bookService = inject(BooksService);
   private _activatedRoute = inject(ActivatedRoute);
+  private _reportService = inject(ReportsService);
 
 
   constructor(private router: Router) { }
@@ -84,6 +86,12 @@ export class CreateBookComponent {
     })
   }
 
+  getGenerateBook() {
+    this._reportService.generateBookAi().subscribe(response => {
+      console.log(response);
+    })
+  }
+
   getIdByRoute() {
     this.id = this._activatedRoute.snapshot.url[1].path;
   }
@@ -121,9 +129,9 @@ export class CreateBookComponent {
   }
 
   updateBook(formData: FormData) {
-    // this.bookService.putBook(formData).subscribe(response => {
-    //   this.router.navigate(['/book']);
-    // })
+    this._bookService.putBook(Number(this.id), formData).subscribe(response => {
+      this.router.navigate(['/book']);
+    })
   }
 
   goToBook() {

@@ -3,15 +3,21 @@
     <mat-icon class="icon-menu">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="editBook(book())">
+    <button
+    mat-menu-item
+    (click)="editBook(book())">
       <mat-icon>edit</mat-icon>
       <span>Editar</span>
     </button>
-    <button mat-menu-item>
+    <button
+    mat-menu-item
+    (click)="openDialogReview('0ms', '0ms', idBook())">
       <mat-icon>star</mat-icon>
       <span>Avaliar</span>
     </button>
-    <button mat-menu-item>
+    <button
+      mat-menu-item
+      (click)="openDialogDelete('0ms', '0ms', idBook())">
       <mat-icon>delete</mat-icon>
       <span>Deletar</span>
     </button>
